@@ -14,14 +14,15 @@ import HookUseCustomAxios from "./hooks/HookUseCustomAxios";
 import UseRef from "./hooks/UseRef";
 import MessageThread from "./hooks/MessageThread";
 import RequestAnimation from "./hooks/RequestAnimation";
-import PassByValue from './basic/PassByValue'
-import PersonInfo from './PersonInfo'
+import PassByValue from "./basic/PassByValue";
+import PersonInfo from "./PersonInfo";
 import Toggle from "./redux/Toggle";
-import ToggleTest from './redux/ToggleTest'
-const { Map, fromJS } = require('immutable');
+import testGlobal from "./testGolbal";
+import Card from "./Card";
+const { Map, fromJS } = require("immutable");
 // import LayoutEffect from './hooks/UseLayoutEffect'
 // import SagaCounter from "./saga/SagaCounter";
-
+// console.log('get value is ' + testGlobal.setValue('1000'))
 
 export const AuthContext = React.createContext(); // added this
 
@@ -73,7 +74,7 @@ const Content = styled.div`
 `;
 
 const Button = styled.button`
-  font-size: ${props => (props.primary ? "20em" : "10em")};
+  font-size: ${(props) => (props.primary ? "20em" : "10em")};
 `;
 
 class Home extends Component {
@@ -85,32 +86,32 @@ class Home extends Component {
       list: [
         {
           sex: "nan",
-          value: 100
+          value: 100,
         },
         {
           sex: "nv",
-          value: 200
-        }
+          value: 200,
+        },
       ], //服务列表
 
       listBack: [],
       p: {
         x: [2],
-        b: "100"
+        b: "100",
       },
       itemInfo: [],
     };
     // const [count, setCount] = useState(0)
   }
-  componentWillReceiveProps() {}
 
   componentDidMount() {
-    
+    let tg = new testGlobal();
+    console.log("getvalue is " + tg.getValue());
 
     let map1 = Map({ a: 1, b: 2, c: 3 });
-    const map2 = map1.set('b', 50);
-    map1 = map2
-    console.log('fff ' + map1.get('b') + " vs. " + map2.get('b')); // 2 vs. 50
+    const map2 = map1.set("b", 50);
+    map1 = map2;
+    console.log("fff " + map1.get("b") + " vs. " + map2.get("b")); // 2 vs. 50
 
     // item1.init({name: 'laoda', vid: true, uid: null})
     // item2.init({name: 'laoer', fAid: true, fVid: undefined})
@@ -147,7 +148,7 @@ class Home extends Component {
     //   console.log(" ol and input " + JSON.stringify(this.state.p));
     // }, 1000);
 
-    let o1 = produce(this.state.p, draft => {
+    let o1 = produce(this.state.p, (draft) => {
       draft.b = "101";
     });
     console.log("o1 is " + JSON.stringify(o1));
@@ -155,11 +156,11 @@ class Home extends Component {
     let currentState = {
       a: [],
       p: {
-        x: 1
-      }
+        x: 1,
+      },
     };
 
-    let nextState = produce(currentState, draft => {
+    let nextState = produce(currentState, (draft) => {
       draft.a.push(2);
     });
 
@@ -182,20 +183,19 @@ class Home extends Component {
   // }
 
   onClickTest = () => {
-
-    let item1 = new PersonInfo()
-    item1.uid = 100
-    let item2 = item1
-    item2.uid = 200
+    let item1 = new PersonInfo();
+    item1.uid = 100;
+    let item2 = item1;
+    item2.uid = 200;
 
     const immuObj = fromJS(item1);
-    immuObj.uid = 300
+    immuObj.uid = 300;
 
-    console.log('map is '+ JSON.stringify(immuObj))
+    console.log("map is " + JSON.stringify(immuObj));
     // console.log(' keys is ' + Object.keys(immuObj.get('body')))
     // console.log('uid is ' + immuObj.get('uid'))
 
-    console.log('fff ' + item1.uid + " vs. " + item2.uid); // 2 vs. 50
+    console.log("fff " + item1.uid + " vs. " + item2.uid); // 2 vs. 50
 
     // const itemInfo = this.state.itemInfo
     // const tempStudent = itemInfo.find(element => element.uid === 20);
@@ -225,36 +225,52 @@ class Home extends Component {
     // this.setState({ listBack: this.state.list });
   };
 
-  inputChange = e => {
+  inputChange = (e) => {
     this.setState({
-      inputValue: e.target.value
+      inputValue: e.target.value,
     });
   };
-  
+
+  handleClickOnTitle(e) {
+    // console.log('Click on title. ' + JSON.stringify(e.target))
+    e.preventDefault()
+    console.log("Click on title. " + e.target.innerHTML);
+  }
+
   render() {
+    const isGoodWord = false;
     return (
       <Fragment>
         <div className="App">
           <header className="App-header">
-            <PassByValue/>
-            <Toggle/>
+            <div>
+              <h1 onClick={this.handleClickOnTitle}>React 小书</h1>
+              <Card comment={1000003}>
+                <h1>
+                  React 小书
+                  {isGoodWord ? (
+                    <strong> is good</strong>
+                  ) : (
+                    <span> is not good</span>
+                  )}
+                </h1>
+              </Card>
+            </div>
+            <PassByValue />
+            <Toggle />
             <button onClick={this.onClickTest}> 测试用</button>
             {this.state.itemInfo.map((item, key) => (
               <l2>{item.uid}</l2>
             ))}
             {this.state.list.map((item, key) => (
               <div className="Item-label" key={key}>
-                  {item.sex}
+                {item.sex}
               </div>
             ))}
-            <div> bellow </div>
-            <div> bellow </div>
             <div> bellow </div>
             {this.state.studentsPeerIds.map((item, key) => (
               <div>{item.init}</div>
             ))}
-            <div> bellow </div>
-            <div> bellow </div>
             <div> bellow </div>
             {this.state.listBack.map((item, key) => (
               <p> {item.sex}</p>
@@ -273,7 +289,7 @@ class Home extends Component {
             <Counter></Counter>
             <label>reducer below</label>
             <HookReducer />
-            <label> HookUseCustomAxios below </label>
+            {/* <label> HookUseCustomAxios below </label> */}
             <HookUseCustomAxios />
             <label>加入服务：</label>
             <div>
@@ -290,7 +306,15 @@ class Home extends Component {
             <MyComponent className="red-bg">
               <Title>Hello World, this is my first styled component!</Title>
             </MyComponent>
-            <Rotate>&lt; 💅 &gt;</Rotate>
+            {/* <Rotate><span>💅</span>></Rotate> */}
+            <Rotate>
+              <span role="img" aria-label="donut">
+                💅
+              </span>
+            </Rotate>
+            <span role="img" aria-label="donut">
+              🍩
+            </span>
             <Title>Hello World, this is my first styled component!</Title>
             <h1 className="App-link">i am home, this what!!</h1>
             {/* <Link to="/about">go to About</Link> */}

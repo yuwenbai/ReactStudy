@@ -1,5 +1,10 @@
 {
   "name": "appreact",
+  "jest": {
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    }
+  },
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
@@ -8,6 +13,7 @@
     "customize-cra": "^0.7.0",
     "immer": "^5.3.6",
     "immutable": "^4.0.0-rc.12",
+    "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-app-rewire-postcss": "^3.0.2",
     "react-app-rewired": "^2.1.3",

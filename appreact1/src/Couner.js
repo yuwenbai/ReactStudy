@@ -1,4 +1,4 @@
-import React, {Fragment, Component} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { increment, decrement } from './Action'
 

@@ -1,9 +1,11 @@
 import React from 'react';
-import { createHashHistory,createBrowserHistory } from 'history';
+import { createBrowserHistory } from 'history';
 // import { Router, Route } from 'react-router'
-import {Router, Route, Link} from 'react-router-dom'
-import Home  from '@/Home'
+import {Router, Route} from 'react-router-dom'
+// import Home  from '@/Home'
 import About  from '@/About'
+import Home  from './Home'
+// import About  from './About'
 
 const history = createBrowserHistory();
 export default () => (

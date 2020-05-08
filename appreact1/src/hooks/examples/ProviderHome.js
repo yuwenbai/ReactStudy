@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import {AuthContext} from './../HookReducer'
 import ProviderCard from './ProviderCard'
 
