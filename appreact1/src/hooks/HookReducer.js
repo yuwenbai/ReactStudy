@@ -9,6 +9,7 @@ const initialState = {
     token: null,
   };
   const reducer = (state, action) => {
+    console.log(' action is ' + JSON.stringify(action))
     switch (action.type) {
       case "LOGIN":
         localStorage.setItem("user", JSON.stringify(action.payload.user));
@@ -67,8 +68,8 @@ function HookReducer() {
         {
             !state.isAuthenticated ? <ProviderLogin/> : <ProviderHome/>
         }
-        <button onClick={() => dispatch({type: "increment"})}>+</button>
-        <button onClick={() => dispatch({type: "decrement"})}>-</button>
+        <button onClick={() => dispatch({type: "increment"})}>增加</button>
+        <button onClick={() => dispatch({type: "decrement"})}>减少</button>
     </div>
 </AuthContext.Provider>
     )

@@ -24,7 +24,9 @@ const RequestAnimation = () => {
       return () => cancelAnimationFrame(requestRef.current);
     }, [animate]); // Make sure the effect runs only once
     
-    return <div>{Math.round(count)}</div>
+    return <div>
+      value is {Math.round(count)}
+      </div>
   }
 
 //   const useAnimationFrame = callback => {

@@ -6,32 +6,25 @@ import {createStore, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-
-// import createSagaMiddleware from 'redux-saga'
-// import { helloSaga } from './saga/sagas';
-// import SagaCounter from './saga/SagaCounter'
-// const sagaMiddleware = createSagaMiddleware()
-
 import rootReducer from './redux/RootReducer'
+import {addToCart} from './redux/reducer/cardReducer'
+
 const middleWare = applyMiddleware(thunkMiddleware)
 const store = createStore(rootReducer, composeWithDevTools(middleWare))
-// sagaMiddleware.run(helloSaga)
+console.log(' console.log("initial state: ", store.getState()); is ' , store.getState())
+let unsubscribe = store.subscribe(() =>
+  console.log(store.getState())
+);
 
-// store.dispatch({ type: "INCREMENT" });
-// store.dispatch({ type: "INCREMENT" });
-// store.dispatch({ type: "DECREMENT" });
-// store.dispatch({ type: "RESET" });
+store.dispatch(addToCart('Coffee 500gm', 1, 250));
+store.dispatch(addToCart('Flour 1kg', 2, 110));
+store.dispatch(addToCart('Juice 2L', 1, 250));
 
+unsubscribe();
 function App() {
   return (
     <Provider store={store}>
     <div className="app">
-    {/* <SagaCounter
-              value={store.getState()}
-              onIncrement={() => store.action("INCREMENT")}
-              onDecrement={() => store.action("DECREMENT")}
-              onIncrementAsync={() => store.action("INCREMENT_ASYNC")}
-            /> */}
       <Routes />
     </div>
     </Provider>

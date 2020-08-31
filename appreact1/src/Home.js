@@ -19,6 +19,8 @@ import PersonInfo from "./PersonInfo";
 import Toggle from "./redux/Toggle";
 import testGlobal from "./testGolbal";
 import Card from "./Card";
+import  BaseContext from './hooks/BaseContext'
+
 const { Map, fromJS } = require("immutable");
 // import LayoutEffect from './hooks/UseLayoutEffect'
 // import SagaCounter from "./saga/SagaCounter";
@@ -102,6 +104,9 @@ class Home extends Component {
       itemInfo: [],
     };
     // const [count, setCount] = useState(0)
+    this.textInput = React.createRef();
+    this.focusTextInput = this.focusTextInput.bind(this)
+    this.canvas = React.createRef();
   }
 
   componentDidMount() {
@@ -113,6 +118,41 @@ class Home extends Component {
     map1 = map2;
     console.log("fff " + map1.get("b") + " vs. " + map2.get("b")); // 2 vs. 50
 
+
+    const mCanvas = this.canvas.current
+    if (mCanvas.getContext) {
+      var ctx = mCanvas.getContext("2d");
+      console.log(ctx);
+      console.log(Object.getPrototypeOf(ctx));
+      var webgl = mCanvas.getContext('webgl')
+      console.log(webgl);
+      (function () {
+        Object.getPrototypeOf(ctx).Triangle = function (x, y, r) {
+            this.save();
+            this.translate(x, y);
+            this.rotate(r);
+            this.beginPath();
+            this.moveTo(0, 0);
+            this.lineTo(10, 0);
+            this.lineTo(0, 10);
+            this.lineTo(-10, 0);
+            this.closePath();
+            this.fill();
+            this.restore();
+        }
+        Object.getPrototypeOf(ctx).line = function (x, y, x1, y1) {
+            this.save();
+            this.beginPath();
+            this.moveTo(x, y);
+            this.lineTo(x1, y1);
+            this.stroke();
+            this.restore();
+        }
+    })();
+    // ctx.strokeStyle = "#7C8B8C";
+    // ctx.line(90, 130, 320, 210);
+    // ctx.Triangle(320, 210, -Math.PI * .4);
+  }
     // item1.init({name: 'laoda', vid: true, uid: null})
     // item2.init({name: 'laoer', fAid: true, fVid: undefined})
 
@@ -231,6 +271,11 @@ class Home extends Component {
     });
   };
 
+  focusTextInput() {
+    console.log("Click on title focus ");
+    this.textInput.current.focus();
+  }
+
   handleClickOnTitle(e) {
     // console.log('Click on title. ' + JSON.stringify(e.target))
     e.preventDefault()
@@ -267,6 +312,8 @@ class Home extends Component {
                 {item.sex}
               </div>
             ))}
+            <div> userContext  </div>
+            <BaseContext/>
             <div> bellow </div>
             {this.state.studentsPeerIds.map((item, key) => (
               <div>{item.init}</div>
@@ -292,10 +339,15 @@ class Home extends Component {
             {/* <label> HookUseCustomAxios below </label> */}
             <HookUseCustomAxios />
             <label>加入服务：</label>
+            <canvas ref={this.canvas} width="780" height="1800">
+              您的浏览器不支持canvas，请更换浏览器.
+            </canvas>
             <div>
               <input
+                ref={this.textInput}
                 value={this.state.inputValue}
                 onChange={this.inputChange.bind(this)}
+                onClick={this.focusTextInput.bind(this)}
               />{" "}
               <button> 增加服务 </button>
             </div>

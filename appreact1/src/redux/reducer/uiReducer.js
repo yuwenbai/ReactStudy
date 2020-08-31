@@ -5,7 +5,7 @@ const initialState = {
 };
 
 export default(state = initialState, action) => {
-  console.log('uiReducer', state, action);
+  // console.log('uiReducer', state, action);
   switch (action.type) {
     case TOGGLE: {
       return {

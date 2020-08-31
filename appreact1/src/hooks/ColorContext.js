@@ -9,7 +9,7 @@ function Foo() {
 }
 function ColorContext() {
   return (
-    <colorContext.Provider value={"red"}>
+    <colorContext.Provider value={"green"}>
       <Foo />
     </colorContext.Provider>
   );
