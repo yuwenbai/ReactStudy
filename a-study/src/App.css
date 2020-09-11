@@ -1,0 +1,200 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  appearance: button;
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.aline {
+  /* display: table-cell; */
+  display: flex;
+  width: 300px;
+  height: 15.14em;
+  padding: 0 0.1em;
+  border: 4px solid #beceeb;
+  color: #069;
+  font-size: 0.5em;
+  /* vertical-align: middle; */
+  align-items: flex-start;
+}
+
+.alineInline {
+  /* display: inline-block; */
+  /* font-size: 0.5em; */
+  text-align: center;
+}
+
+span {
+  display: inline-block;
+  font-size: 0.5em;
+  vertical-align: middle;
+  margin: auto;
+}
+@keyframes mymove {
+  from {
+    /* left: 0px; */
+    transform: rotate(0deg);
+  }
+  to {
+    /* left: 200px; */
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes stage {
+  0% {
+    background: red;
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    background: yellow;
+    left: 50px;
+    top: 0px;
+  }
+  50% {
+    background: blue;
+    left: 50px;
+    top: 50px;
+  }
+  75% {
+    background: green;
+    left: 0px;
+    top: 50px;
+  }
+  100% {
+    background: red;
+    left: 0px;
+    top: 0px;
+  }
+}
+.anim {
+  appearance: button;
+  width: 10px;
+  height: 10px;
+  background: red;
+  position: relative;
+  animation: stage 5s infinite;
+}
+.box {
+  width: 200px;
+  height: 200px;
+  border: 1px solid red;
+  position: relative;
+  /* flex */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  /* grid */
+  /* display: grid; */
+  /* table-cell + vertical-align + inline-block/margin: auto */
+  width: 200px;
+  height: 200px;
+  border: 1px solid red;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+.children-box {
+  /* width: 100px;
+  height: 100px;
+  background: yellow;
+  margin-left: 25%;
+  margin-top: 25%; */
+
+  /* position: absolute;
+  width: 100px;
+  height: 100px;
+  background: yellow;
+  left: 0;
+  top: 0;
+  transform: translate(50%, 50%); */
+
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0px;
+  background: yellow;
+  margin: auto;
+  height: 100px;
+  width: 100px; */
+  /* flex */
+  /* background: yellow;
+  height: 100px;
+  width: 100px; */
+  /* grid */
+  /* width: 100px;
+  height: 100px;
+  background: yellow;
+  margin: auto; */
+  /* table-cell + vertical-align + inline-block/margin: auto */
+  width: 100px;
+  height: 100px;
+  /* background: yellow; */
+  margin: auto;
+}
+
+.content {
+  display: table;
+  border: 1px solid #06c;
+  padding: 15px 15px;
+  max-width: 1000px;
+  margin: 10px auto;
+  min-width: 320px;
+  width: 100%;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ccc;
+  text-align: center;
+  display: inline-block;
+  font-size: 40px;
+  line-height: 100px;
+  /* background-color: #069; */
+}
+.right {
+  text-align: right;
+  display: table-cell;
+  /* background-color: #61dafb; */
+}
+.left {
+  text-align: left;
+  display: table-cell;
+  /* background-color: #beceeb; */
+}

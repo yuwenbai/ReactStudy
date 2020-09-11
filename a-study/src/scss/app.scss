@@ -1,0 +1,78 @@
+@import "_function.scss";
+$nav-color: #f90;
+$width: 200px;
+$link-color: blue;
+.nav {
+  width: $width;
+  background-color: $nav-color;
+}
+
+.cca {
+  background-color: $link-color;
+}
+
+@keyframes stage {
+  0% {
+    background: red;
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    background: yellow;
+    left: 50px;
+    top: 0px;
+  }
+  50% {
+    background: blue;
+    left: 50px;
+    top: 50px;
+  }
+  75% {
+    background: green;
+    left: 0px;
+    top: 50px;
+  }
+  100% {
+    background: red;
+    left: 0px;
+    top: 0px;
+  }
+}
+.scssanim {
+  appearance: button;
+  width: 10px;
+  height: 10px;
+  background: red;
+  position: relative;
+  animation: stage 5s infinite;
+}
+
+@mixin button {
+  font-size: 1em;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  color: #f00;
+}
+
+.button-green {
+  @include button;
+  background-color: green;
+}
+
+.multiBackground {
+  width: 20px;
+  height: 20px;
+  background: red;
+  // background-image: url(./../logo.svg);
+  @include Bg("./../logo.svg");
+  background-clip: padding;
+  background-size: contain;
+  border-radius: 10px;
+  border: 7px solid #2e9de6;
+  transform: rotate(10deg);
+}
+.demo01 {
+  size: 0.5em;
+  color: #f00;
+  text-shadow: 2px 2px 5px #f90;
+}

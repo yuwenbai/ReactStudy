@@ -28,7 +28,7 @@ const theme = createMuiTheme({
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.mineBitcoin(1500);
+    // this.mineBitcoin(1500);
   }
   mineBitcoin(duration) {
     const start = new Date().getTime();
