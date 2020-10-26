@@ -76,3 +76,54 @@ $link-color: blue;
   color: #f00;
   text-shadow: 2px 2px 5px #f90;
 }
+// .box {
+//   -webkit-transform: translate(0, 0);
+//   -webkit-transition: -webkit-transform 1000ms;
+
+//   transform: translate(0, 0);
+//   transition: transform 1000ms;
+// }
+
+// .box.move {
+//   -webkit-transform: translate(50px, 50px);
+//   transform: translate(50px, 50px);
+// }
+
+/**
+ * 该示例是没有包含浏览器前缀的精简版。加上以后会更加准确些。
+ *
+ */
+.newbox {
+  /* 选择动画名称 */
+  animation-name: movingBox;
+
+  /* 动画时长 */
+  animation-duration: 2300ms;
+
+  /* 动画循环次数 */
+  animation-iteration-count: infinite;
+
+  /* 每次奇数次循环时反转动画 */
+  animation-direction: alternate;
+}
+
+@keyframes movingBox {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.4;
+  }
+
+  25% {
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translate(150px, 200px);
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: translate(40px, 30px);
+    opacity: 0.8;
+  }
+}

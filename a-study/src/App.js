@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import "./scss/app.scss";
+import Test from './Test'
 
 import {
   BrowserRouter as Router,
@@ -19,6 +20,9 @@ import Topics from "./routers/Topics";
 
 import DataProvider from "./DataProvider";
 import Parent from "./InstanceMethods";
+import PrimitiveTest from './PrimitiveTest'
+import ObjectTest from './ObjectTest'
+import UseMemoObjectTest from './UseMemoObjectTest'
 
 const cout = (obj) => {
   console.log(obj);
@@ -44,6 +48,9 @@ class ThemeButton extends React.Component {
 function App() {
   const [state, setState] = useState("");
   useEffect(() => {
+    (function() {
+      console.log('Hello, World!');
+  })();
     let aaa = {
       a: 100,
       b: 101,
@@ -64,7 +71,72 @@ function App() {
     window.name = "fdfdfd";
     cout(window.devicePixelRatio);
     cout(window.innerHeight);
+    cout(window.getSelection());
+
+    let testObj = {'aaa1bbb': 'cccc'}
+    console.log('1111')
+    cout(Object.getOwnPropertyNames(testObj))
+    cout(testObj['aaa' + 1 + 'bbb'])
     console.log("componentWillMount...");
+    const res = {
+      foo: 1,
+      adddd: 2,
+      fdsfdsfdsf:'34324324',
+      countRoleConf0fieldNameList:'aaaa1',
+      countRoleConfSub0fieldNameList:'bbbb1',
+      countRoleConf1fieldNameList:'aaaa2',
+      countRoleConfSub1fieldNameList:'bbbb2',
+      countRoleConf2fieldNameList:'aaaa3',
+      countRoleConfSub2fieldNameList:'bbbb3',
+    }
+    for(let i = 0;  res[`countRoleConf${i}fieldNameList`]; i++) {
+      cout(res[`countRoleConf${i}fieldNameList`])
+      cout(res[`countRoleConfSub${i}fieldNameList`])
+    }
+
+    // let aaareplic =[2,2,3,4,5]
+    // cout(aaareplic)
+    // cout(Array.from(new Set(aaareplic)))
+
+    const arr = [1,2,3]
+const obj = {...arr}
+console.log(obj)
+
+let start = performance.now();
+let sum = 0;
+for (let i = 0; i < 100000; i++) {
+  sum += 1;
+}
+let end = performance.now();
+console.log(start);
+console.log(end);
+
+let arr1 = [1, [2, 3, [4, [5]]]];
+cout(arr1.flat(3)); // [1,2,3,4,5]
+
+const arr2 = [1, 2, 3, 4, 5];
+const copyArr = arr2.slice();
+const equaArr = arr2;
+arr2[2] = 100
+cout(copyArr)
+cout(arr2)
+cout(equaArr)
+
+function foo() {
+  var d = 20;
+  return function inner(a, b) {
+    const c = a + b + d;
+    return c;
+  };
+}
+const f = foo();
+cout(f(10,10))
+cout(f(10,10))
+cout(f(10,10))
+  //   setInterval(()=>{
+  //     var selection=window.getSelection();
+  //     console.log(selection)
+  // },1000)
     return () => {
       console.log("componentWillUnmount...");
     };
@@ -96,6 +168,8 @@ function App() {
     console.log(b);
     console.log("aaa");
     console.log("aaa" + (a === b));
+
+    // #{x: 1, y: 4} === #{x: 1, y: 4}
     e.persist();
     // console.log(e.nativeEvent);
     setTimeout(() => {
@@ -103,6 +177,10 @@ function App() {
     }, 10);
 
     cout(navigator.cookieEnabled);
+
+
+
+
 
     // cout(navigator.userAgent)
 
@@ -157,6 +235,9 @@ function App() {
         </div> */}
         {/* <template> */}
         {/* <div id='app'> */}
+        {/* <PrimitiveTest/> */}
+        {/* <ObjectTest/> */}
+        <UseMemoObjectTest/>
         <div className="box">
           <div className="children-box"></div>
         </div>
@@ -200,6 +281,8 @@ function App() {
           Say hi!
         </button>
 
+        <div className="newbox">Sample content.</div>
+
         <Router>
           <div>
             <nav>
@@ -219,14 +302,11 @@ function App() {
               </ul>
             </nav>
 
-            <Switch>
+            {/* <Switch>
               <Route path="/" exact children={Home} />
               <Route path="/about" children={About} />
               <Route path="/users" children={Users} />
-              {/* <Route path="/topics"> 
-                <Topics />
-              </Route> */}
-            </Switch>
+            </Switch> */}
           </div>
         </Router>
         <Topics />

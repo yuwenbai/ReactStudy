@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, useState, useEffect, createRef, useRef } from "react";
+import React, { useImperativeHandle, useState, useEffect, createRef, useRef, Component } from "react";
 import ReactDOM from "react-dom";
 
 // export default function Home() {
@@ -33,6 +33,12 @@ const ChildEx = React.forwardRef((props, ref) => {
     );
 })
 
+class SecondChild extends React.Component {
+  
+  render() {
+    return <button> </button>;
+  }
+}
 // const ChildEx = React.forwardRef((props, ref) => (
 //   // <Child ref={ref}>
 
@@ -46,7 +52,8 @@ const ChildEx = React.forwardRef((props, ref) => {
     const parentElement = useRef()
     useEffect(() => {
       // parentElement.current.myFunc()
-      console.log(parentElement.current.myFunc())
+      console.log(parentElement)
+      // console.log(parentElement.current.myFunc())
     })
   // componentDidMount() {
   //   // var x = this.foo.myFunc();
@@ -55,8 +62,9 @@ const ChildEx = React.forwardRef((props, ref) => {
   // }
   // render() {
     return (
-      <ChildEx ref={parentElement}
-      />
+      // <ChildEx ref={parentElement}
+      // />
+      <SecondChild ref={parentElement}/>
     );
   // }
 }
