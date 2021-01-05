@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import "./scss/app.scss";
 import Test from './Test'
+import singleton from './tools/singleton'
 
 import {
   BrowserRouter as Router,
@@ -23,6 +24,9 @@ import Parent from "./InstanceMethods";
 import PrimitiveTest from './PrimitiveTest'
 import ObjectTest from './ObjectTest'
 import UseMemoObjectTest from './UseMemoObjectTest'
+
+import MemoTest from './optidemo/MemoTest'
+import TestDefaultProp from './TestDefaultProp'
 
 const cout = (obj) => {
   console.log(obj);
@@ -45,11 +49,46 @@ class ThemeButton extends React.Component {
   }
 }
 
+//一下了吃进10000个DIV by 司徒正美
+function randomHexColor() { //随机生成十六进制颜色
+  return "#" + ("00000" + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6);
+}
+var root = document.getElementById("root");
+
 function App() {
   const [state, setState] = useState("");
   useEffect(() => {
     (function() {
       console.log('Hello, World!');
+    //   setTimeout(function () {
+    //     var k = 0;
+    //     var root = document.getElementById("root");
+    //     for (var i = 0; i < 10000; i++) {
+    //         k += new Date() - 0;
+    //         var el = document.createElement("div");
+    //         el.innerHTML = k+ Math.random()
+    //         root.appendChild(el);
+    //         el.style.cssText = "background:" + randomHexColor() + ";height:30px;";
+    //     }
+    // }, 3000);
+    setTimeout(function () {
+      function loop(n) {
+          var k = 0;
+          for (var i = 0; i < 100; i++) {
+              k += new Date() - 0;
+              var el = document.createElement("div");
+              el.innerHTML = k+Math.random();
+              root.appendChild(el);
+              el.style.cssText = "background:" + randomHexColor() + ";height:30px;";
+          }
+          if (n) {
+              setTimeout(function () {
+                  loop(n - 1);
+              }, 40);
+          }
+      }
+      loop(100);
+  }, 3000);
   })();
     let aaa = {
       a: 100,
@@ -201,6 +240,10 @@ cout(f(10,10))
     //           window.sessionStorage.setItem('sessionUserId', 'sessionCrifan');
     // alert('clickHandle')
   };
+
+  const testThunk = (e) => {
+    console.log('testThunk ', e)
+  }
   const onChange = (e) => {
     for (let i = 0; i <= 2000000; i++) {
       JSON.stringify({
@@ -211,109 +254,13 @@ cout(f(10,10))
     setState(e.target.value);
   };
 
+  const len = 3000
+
   return (
     <div className="App">
       <header className="App-header">
-        <ThemeContext.Provider value="dark">
-          <Toolbar />
-        </ThemeContext.Provider>
-        <Parent />
-        <DataProvider render={(data) => <h1>hello = {data.data.target} </h1>} />
-        {/* <img src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg" alt='aaa'/>
-        
-        <div className='anim'>
-        
-        </div>
-        <div className='aline'>
-          <span className='alineInline'>
-            我是单行文本测试
-            我是单行文本测试
-            我是单行文本测试1
-            换行fdfdsfdsfdsfdsfdsfdsfdsfdsf
-            换行fdfdsfdsfdsfdsfdsfdsfdsfdsf
-            </span>
-        </div> */}
-        {/* <template> */}
-        {/* <div id='app'> */}
-        {/* <PrimitiveTest/> */}
-        {/* <ObjectTest/> */}
-        <UseMemoObjectTest/>
-        <div className="box">
-          <div className="children-box"></div>
-        </div>
-        {/* </div> */}
-        {/* </template> */}
-        <div> 分割线 -----------------</div>
-        <div className="content">
-          <div className="left">
-            <div className="box">B</div>
-          </div>
-          <div className="right">
-            <div className="box">A</div>
-          </div>
-        </div>
-
-        <div className="nav">test scss</div>
-
-        <div className="cca">test cca</div>
-        <button className="button-green">点我一下</button>
-
-        <div className="scssanim"></div>
-
-        <div className="multiBackground" />
-
-        <h1 className="demo01">text shadow test</h1>
-
-        {/* <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p> */}
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          React1
-        </a>
-        <input value={state} onChange={onChange} />
-        <button type="button" onClick={(e) => clickHandle(e)}>
-          Say hi!
-        </button>
-
-        <div className="newbox">Sample content.</div>
-
-        <Router>
-          <div>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-                <li>
-                  <Link to="/users">Users</Link>
-                </li>
-                <li>
-                  <Link to="/topics">Topics</Link>
-                </li>
-              </ul>
-            </nav>
-
-            {/* <Switch>
-              <Route path="/" exact children={Home} />
-              <Route path="/about" children={About} />
-              <Route path="/users" children={Users} />
-            </Switch> */}
-          </div>
-        </Router>
-        <Topics />
+        <div onClick={testThunk}>点我试试</div>
       </header>
-      {/* <body> */}
-
-      {/* </body> */}
     </div>
   );
 }
