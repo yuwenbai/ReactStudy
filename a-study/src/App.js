@@ -4,6 +4,8 @@ import "./App.css";
 import "./scss/app.scss";
 import Test from './Test'
 import singleton from './tools/singleton'
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 import {
   BrowserRouter as Router,
@@ -33,6 +35,19 @@ const cout = (obj) => {
 };
 var a = 1;
 
+function counter(state = 0, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1
+    case 'DECREMENT':
+      return state - 1
+    case 'MAKE_SANDWICH':
+      return state + 10001
+    default:
+      return state
+  }
+}
+
 const ThemeContext = React.createContext("dark");
 function Toolbar() {
   return (
@@ -54,6 +69,9 @@ function randomHexColor() { //随机生成十六进制颜色
   return "#" + ("00000" + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6);
 }
 var root = document.getElementById("root");
+const api = "http://www.example.com/sandwiches/";
+let store = createStore(counter, applyMiddleware(thunk.withExtraArgument(api)),)
+store.subscribe(() => console.log(store.getState()))
 
 function App() {
   const [state, setState] = useState("");
@@ -241,8 +259,94 @@ cout(f(10,10))
     // alert('clickHandle')
   };
 
+  function fetchSecretSauce() {
+    // return fetch('https://www.google.com/search?q=secret+sauce');
+    return new Promise((resolve)=>{
+      setTimeout(()=>{
+        resolve('test test test')
+      },1000)})
+  }
+
+
+  function makeASandwich(forPerson, secretSauce) {
+    return {
+      type: 'MAKE_SANDWICH',
+      forPerson,
+      secretSauce,
+    };
+  }
+  
+  function apologize(fromPerson, toPerson, error) {
+    console.log('apologize ')
+    return {
+      type: 'APOLOGIZE',
+      fromPerson,
+      toPerson,
+      error,
+    };
+  }
+
+  function withdrawMoney(amount) {
+    return {
+      type: 'WITHDRAW',
+      amount,
+    };
+  }
+
+  
+  function makeASandwichWithSecretSauce(forPerson) {
+    // We can invert control here by returning a function - the "thunk".
+    // When this function is passed to `dispatch`, the thunk middleware will intercept it,
+    // and call it with `dispatch` and `getState` as arguments.
+    // This gives the thunk function the ability to run some logic, and still interact with the store.
+    return function(dispatch) {
+      return fetchSecretSauce().then(
+        (sauce) => dispatch(makeASandwich(forPerson, sauce)),
+        (error) => dispatch(apologize('The Sandwich Shop', forPerson, error)),
+      );
+    };
+  }
+
+
+
+  const makeSandwichesForEverybody = () => {
+    return function(dispatch, getState) {
+      // console.log('sandwiches is ', getState().sandwiches)
+      // if (getState().sandwiches) {
+      //   // You don’t have to return Promises, but it’s a handy convention
+      //   // so the caller can always call .then() on async dispatch result.
+  
+      //   return Promise.resolve();
+      // }
+  
+      // We can dispatch both plain object actions and other thunks,
+      // which lets us compose the asynchronous actions in a single flow.
+  
+      return dispatch(makeASandwichWithSecretSauce('My Grandma'))
+        .then(() =>
+          Promise.all([
+            dispatch(makeASandwichWithSecretSauce('Me')),
+            dispatch(makeASandwichWithSecretSauce('My wife')),
+          ]),
+        )
+        .then(() => dispatch(makeASandwichWithSecretSauce('Our kids')))
+        .then(() => {
+          console.log('getState is ', getState())
+          dispatch(
+            getState().myMoney > 42
+              ? withdrawMoney(42)
+              : apologize('Me', 'The Sandwich Shop'),
+          )
+        }
+        );
+    };
+  }
+
   const testThunk = (e) => {
-    console.log('testThunk ', e)
+
+    console.log('testThunk ', store)
+    store.dispatch({ type: 'INCREMENT' })
+    store.dispatch(makeSandwichesForEverybody())
   }
   const onChange = (e) => {
     for (let i = 0; i <= 2000000; i++) {
