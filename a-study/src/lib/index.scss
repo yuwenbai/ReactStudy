@@ -1,0 +1,363 @@
+$vm: 100vw/375;
+.testWindow{
+    background-color: yellowgreen;
+    width: 100%;
+    height: 100%;
+    // overflow:hidden;
+    .testWindowSlider{
+        background-color: yellow;
+        width: 40px;
+        height: 60%;
+    }
+    .testList{
+        background-color: gray;
+        width: 50%;
+    }
+}
+.phonelogin-frame {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    top: 50%;
+    flex-direction: column;
+    align-items: center;
+    background-color: yellow;
+    .line {
+        height: 30 * $vm;
+        line-height: 30 * $vm;
+        border-top: 1 * $vm solid #f0f0f0;
+      }
+    .section-base{
+        // position: absolute;
+        // top:0;
+        width: 100%;
+        height: 100%; 
+        .section{
+            width: 366px;
+            // height: 340px;
+            .section-title {
+                // padding: 0 10 * $vm;
+                height: 20px;
+                // line-height: 25 * $vm;
+                background: #f0f0f0;
+                font-size: 10px;
+                color: #999999;
+              }
+              .section-box {
+                padding: 0 10 * $vm;
+              }
+              .section-grid {
+                padding: 10 * $vm 10 * $vm 0;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: flex-start;
+              }
+        }
+    }
+
+      .nonius {
+        margin-right: -35%;
+        transform: translateX(-50%);
+        width: 90px;
+        margin-left:auto;
+        position: fixed;
+        // right: -100px;
+        // top: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        // font-size: 12 * $vm;
+        z-index: 999;
+        // background-color: rgb(138, 131, 131);
+        div {
+            position: relative;
+            left:0;
+            background-color: green;
+            border-width: 2px;
+            border-color: hotpink;
+            padding: 1px;
+            margin: 1px;
+            &.active {
+                border-color: #079ACD;
+              }
+        }
+      }
+      
+      .on-select {
+        width: 50 * $vm;
+        border-radius: 5 * $vm;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        background: rgba(0, 0, 0, .5);
+        text-align: center;
+        padding: 10px;
+        z-index: 99;
+        font-size: 24 * $vm;
+        font-weight: 600;
+        line-height: 30 * $vm;
+      }
+      .keys-item {
+        display: block;
+        height: 20px;
+        width: 100%;
+        text-align: center;
+        border-width: 2px;
+        border-color: green;
+        font-size: 10px;
+        &>img {
+          height: 100%;
+        }
+      }
+    .phonelogin-frame-body {
+        width: 320px;
+        height: 278px;
+        display: flex;
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        top :0 ;
+        transform: 50%;
+        flex-direction: column;
+        align-items: center;
+        background-color: gray;
+        margin-right: 20px;
+        .phonelogin-frame-body-tab{
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            height: 40px;
+            background-color: greenyellow;
+            .phonelogin-frame-body-tab-left{
+                width: 50%;
+                height: 100%;
+                border-width: 2px;
+                background-color: green;
+            }
+            .phonelogin-frame-body-tab-right{
+                width: 50%;
+                height: 100%;
+                border-width: 2px;
+                background-color: red;
+            }
+        }
+        .phonelogin-frame-change-main{
+            background-color: greenyellow;
+            width: 100%;
+            top:40px;
+            height: 100%;
+
+            .phonelogin-frame-captcha-part{
+                width: 100%;
+                height: 150px;
+                position: absolute;
+                background-color:grey;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background-color: black;
+                .phonelogin-frame-captch-body{
+                    display:flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    width: 320px;
+                    height: 100px;
+                    background-color: blue;
+                    .phonelogin-frame-capth-input{
+                        // position: absolute;
+                        // top:50px;
+                        // left:50%;
+                        // transform: translateX(-50%);
+                        width: 80px;
+                        border-radius: 20px;
+                        border-color: black;
+                        overflow: hidden;
+                    }
+                    .phonelogin-frame-capth-code{
+                        width: 80px;
+                    }
+                }
+                
+                .phonelogin-frame-body-varify-frame {
+                    width: 300px;
+                    height: 30px;
+                    position: absolute;
+                    top:100px;
+                    left:50%;
+                    transform: translateX(-50%);
+                    border-radius: 20px;
+                    border-color: black;
+                    background-color: red;
+                    overflow: hidden;
+                    .phonelogin-frame-body-varify{
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .phonelogin-frame-body-varify-button{
+                        position: relative;
+                        right: -200px;
+                        top:-25px;
+                        border-radius: 20px;
+                    }
+                }
+                .phonelogin-frame-body-button{
+                    position: absolute;
+                    top:180px;
+                    left:50%;
+                    transform: translateX(-50%);
+                }
+        
+                .phonelogin-frame-body-jumpregister{
+                    position: absolute;
+                    top:210px;
+                    left:50%;
+                    transform: translateX(-50%);
+                }
+            }
+            .phonelogin-frame-varify-part{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                background-color:grey;
+                flex-direction: column;
+                align-items: center;
+                .phonelogin-frame-body-input{
+                    position: absolute;
+                    top:50px;
+                    left:50%;
+                    transform: translateX(-50%);
+                    width: 300px;
+                    border-radius: 20px;
+                    border-color: black;
+                    background-color: red;
+                    overflow: hidden;
+                    .phonelogin-frame-body-inputSelect{
+                        width: 70px;
+                        border-radius: 20px;
+                        border-color: black;
+                        border-width: 10px;
+                        background-color: red;
+                    }
+                }
+                .phonelogin-frame-body-varify-frame {
+                    width: 300px;
+                    height: 30px;
+                    position: absolute;
+                    top:100px;
+                    left:50%;
+                    transform: translateX(-50%);
+                    border-radius: 20px;
+                    border-color: black;
+                    background-color: red;
+                    overflow: hidden;
+                    .phonelogin-frame-body-varify{
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .phonelogin-frame-body-varify-button{
+                        position: relative;
+                        right: -200px;
+                        top:-25px;
+                        border-radius: 20px;
+                    }
+                }
+                .phonelogin-frame-body-button{
+                    position: absolute;
+                    top:180px;
+                    left:50%;
+                    transform: translateX(-50%);
+                }
+        
+                .phonelogin-frame-body-jumpregister{
+                    position: absolute;
+                    top:210px;
+                    left:50%;
+                    transform: translateX(-50%);
+                }
+            }
+            .phonelogin-frame-password-part{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                background-color:grey;
+                flex-direction: column;
+                align-items: center;
+                .phonelogin-frame-body-input{
+                    position: absolute;
+                    top:50px;
+                    left:50%;
+                    transform: translateX(-50%);
+                    width: 300px;
+                    border-radius: 20px;
+                    border-color: black;
+                    background-color: red;
+                    overflow: hidden;
+                    .phonelogin-frame-body-inputSelect{
+                        width: 70px;
+                        border-radius: 20px;
+                        border-color: black;
+                        border-width: 10px;
+                        background-color: red;
+                    }
+                }
+                .phonelogin-frame-body-varify-frame {
+                    width: 300px;
+                    height: 30px;
+                    position: absolute;
+                    top:100px;
+                    left:50%;
+                    transform: translateX(-50%);
+                    border-radius: 20px;
+                    border-color: black;
+                    background-color: red;
+                    overflow: hidden;
+                    .phonelogin-frame-body-varify{
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .phonelogin-frame-body-varify-button{
+                        position: relative;
+                        right: -200px;
+                        top:-25px;
+                        border-radius: 20px;
+                    }
+                }
+                .phonelogin-frame-body-button{
+                    position: absolute;
+                    top:180px;
+                    left:50%;
+                    transform: translateX(-50%);
+                }
+        
+                .phonelogin-frame-body-jumpregister{
+                    position: absolute;
+                    top:210px;
+                    left:50%;
+                    transform: translateX(-50%);
+                }
+            }
+        }
+
+    }
+    .phonelogin-frame-footer {
+        width: 300px;
+        height: 57px;
+        display: flex;
+        // background-color: green;
+        flex-direction: row;
+        align-items: center;
+        // left:0;
+        position: absolute;
+        top:270px;
+        color: #999;
+        font-size: 10px;
+    }
+  }
+  

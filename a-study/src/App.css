@@ -1,5 +1,146 @@
 .App {
   text-align: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  /* left:100px; */
+  background-color: #069;
+}
+.sliderBase{
+  width: 300px;
+  height:200px;
+  background-color: #009;
+}
+.testsvga{
+  width: 200px;
+  height: 200px;
+}
+
+.pagination-wrap {
+  height: 52px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.testblock{
+  position: absolute;
+  top:100px;
+  left:100px;
+  width: 150px;
+  height: 100px;
+  /* height:100%; */
+
+  background-color: #61dafb;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  overflow-x: auto
+  /* background-image: url('http://articles.csdn.net/uploads/allimg/110527/16354R640-1.jpg'); */
+}
+
+.carouselindicator-dotbase{
+  /* margin-top: 1rem; */
+  position: relative;
+  width: 100px;
+  height: 50px;
+  flex-shrink: 0;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  margin: 2px;
+  background-color: red;
+}
+
+.carouselindicator-dots{
+  display: flex;
+  padding: 10px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.carouselindicator-dot{
+  border: none;
+  width: 0.24rem;
+  height: 0.24rem;
+  background: #c5c5c5;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.carouselindicator-dotbase:focus {
+  outline: none;
+}
+
+.carouselindicator-dotbase.active {
+  background: #000;
+  width: 0.48rem;
+  height: 0.48rem;
+  /* background:url("~@img/lobby/choose.png") no-repeat center center; */
+  background-size: contain;
+}
+
+.testblock111{
+position: absolute;
+top:0;
+ width: 30px;   
+ height: 30px;   
+ background-color: lightcoral; 
+}
+
+.testblock222{
+  width: 50px;   
+  height: 30px;  
+  background-color: gainsboro; 
+ }
+
+
+ .testblock333{
+  width: 50px;   
+  height: 70px;   
+  background-color: black;
+  position: absolute;
+bottom:0;
+ }
+
+
+.example{
+  /* width: 400px;
+  height: 400px;
+  position: relative;
+  top:100px; */
+}
+
+.dots {
+  display: flex;
+  padding: 10px 0;
+  justify-content: center;
+}
+
+.dot {
+  border: none;
+  width: 10px;
+  height: 10px;
+  background: #c5c5c5;
+  border-radius: 50%;
+  margin: 0 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.legend{
+  width: 100%;
+  height: 100%;
+}
+.dot:focus {
+  outline: none;
+}
+
+.dot.active {
+  background: #000;
 }
 
 .App-logo {
@@ -27,6 +168,17 @@
 .App-link {
   appearance: button;
   color: #61dafb;
+}
+.test{
+  width: 200px;
+  height: 200px;
+  background-color:rebeccapurple;
+}
+
+.testtest{
+  width: 100px;
+  height: 100px;
+  background-color: saddlebrown;
 }
 
 @keyframes App-logo-spin {

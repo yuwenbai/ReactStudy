@@ -1,0 +1,119 @@
+.testLayout1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    .body{
+        width: 400px;
+        height: 400px;
+        background-color: gray;
+    }
+    .lesson-aid-main-img{
+        transform: translateX(50%);
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+    }
+}
+.page-create-poster {
+    display: flex;
+    flex-direction: column;
+    .page-create-poster-body {
+        height: 200px;
+        padding-top: 20px;
+        box-sizing: border-box;
+        .poster-carousel-container {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .poster-loading {
+            text-align: center;
+        }
+        .create-poster-bottom {
+            padding-bottom: constant(safe-area-inset-bottom);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .pagination-wrap {
+            height: 52rpx;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+.banner-info {
+    border-radius: 16px;
+    height: 280px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+    .banner-content{
+        background-color: gray;
+        height: 100px;
+    }
+  }
+
+.testlayout{
+    .banner-info {
+        border-radius: 16rpx;
+        height: 280rpx;
+        overflow: hidden;
+        img {
+          width: 100%;
+        }
+      }
+    background-color: rebeccapurple;
+    width: 400px;
+    height: 400px;
+     display: block;
+     overflow-x: hidden;
+     overflow-y: hidden;
+     .carousel-card-list{
+        flex:1;
+        overflow: hidden;
+        padding: 0 0 10px;
+        .slider-frame{
+            height:100% !important;
+            position:absolute !important;
+            .slider-list{
+                height:100% !important;
+                .slider-slide{
+                    height:100% !important;
+                    padding: 5px 0;
+                    .homepage-box{
+                        width: 100px;
+                        height: 100px;
+                    }
+                }
+            }
+        }
+     }
+    // flex-direction: row;
+    // align-items: center;
+    // justify-content: center;
+    .child1{
+        position: relative;
+        left:-200px;
+        bottom:100px;
+        background-color: gray;
+        width: 200px;
+        height: 300px;
+        border-color: green;
+        border-width: 3px;
+    }
+    .child2{
+        position: relative;
+        left:-200px;
+        bottom:100px;
+        border-color: black;
+        border-width: 3px;
+        background-color:beige;
+        width: 300px;
+        height: 200px;
+    }
+}

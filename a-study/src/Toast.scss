@@ -1,0 +1,43 @@
+.react-select-container{
+    width: 200px;
+    .react-select__control{
+        width: 200px;
+        height: 40px;
+        font-size: 6px;
+        padding: 0;
+        min-height: auto;
+        font-family: SFMono-Regular;
+        .react-select__value-container{
+            padding: 0;
+        }
+        .react-select__indicator{
+            padding: 0;   
+        }
+    }
+    .react-select__menu{
+        .react-select__menu-list{
+            // height: 40px;
+            //这个很影响美观
+            // padding-bottom: 4px;
+            // padding-top: 4px;
+            background-color: 'green';
+           .react-select__option{
+               padding: 2;
+               height: 40px;
+               color: yellowgreen;
+               font-family: SFMono-Regular;
+               border-color: black;
+               border-width: 2px;
+               &:focus{
+                background-color: brown;
+               }
+           } 
+            .react-select__option--is-selected{
+                //    background-color:rgba(255,0,0,0.2);
+               }
+               .react-select__option--is-focused{
+                background-color:rgba(0,255,0,0.2);
+                }
+        }
+    }
+}
