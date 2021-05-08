@@ -289,7 +289,7 @@ class Home extends Component {
         <div className="App">
           <header className="App-header">
             <div>
-              <h1 onClick={this.handleClickOnTitle}>React 小书</h1>
+              <h1 onClick={this.handleClickOnTitle}>React 小xiao</h1>
               <Card comment={1000003}>
                 <h1>
                   React 小书
