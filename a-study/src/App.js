@@ -37,6 +37,9 @@ import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
 import SVGA from "svgaplayerweb";
 import { Svga } from "react-svga";
 import svgaIcon from "./test.svga";
+import worker_script  from "./selfwork";
+import indexdbHelper from './indexdb-helper';
+
 const settings = {
   dots: true,
   infinite: true,
@@ -100,8 +103,28 @@ function App() {
   const [state, setState] = useState("");
   const [pages, setPages] = useState([1, 2, 3, 4, 6, 8, 9, 10]);
   const [pagespages, setPagespages] = useState(2);
+
+  const reset = async () => {
+  // const testIndexDb = async  => {
+    let ret = await indexdbHelper.init()
+    //   console.log('indexdbHelper init res is ',res)
+      await indexdbHelper.saveOrUpdate({id:'aaaaa'})
+      const users = await indexdbHelper.readAll();
+      console.log('users is ',users);
+
+    // })
+  }
   useEffect(() => {
+    reset()
+    var myWorker = new Worker(worker_script)
+    myWorker.onmessage = (m) => {
+      console.log('msg from worker :', m.data)
+      var open = window.indexedDB.open('HistoricalDB');
+    }
+    myWorker.postMessage('im from main')
+
     console.log("mouse wheel event: init useEffect ");
+
     myRef.current.addEventListener("wheel", (e) => {
       console.log("mouse wheel event:", e);
       // 阻止原生滚动事件
